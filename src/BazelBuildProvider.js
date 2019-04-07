@@ -78,7 +78,7 @@ class BazelBuildProvider extends EventEmitter {
 
 		bazelsRunning[this.cwd] -= 1;
 
-		return result;
+		return result.stdout;
 	}
 
 	destructor() {
@@ -175,7 +175,7 @@ class BazelBuildProvider extends EventEmitter {
 			return this.settingsError(targetsErr);
 		}
 
-		const targetNames = targetsRaw.split("\n");
+		const targetNames = targetsRaw.stdout.split("\n");
 
 		this.bazelTargets = [
 			{
